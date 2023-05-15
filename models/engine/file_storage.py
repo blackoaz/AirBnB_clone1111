@@ -8,9 +8,9 @@ from models.base_model import BaseModel
 
 class FileStorage:
     """class for serializing and deserializing data of instances"""
-    #stores objects by <class name>.id
+    """stores objects by <class name>.id"""
     __objects = {}
-    #path to JSON file
+    """path to JSON file"""
     __file_path = "file.json"
 
     def all(self):
@@ -28,7 +28,7 @@ class FileStorage:
         data_dict = {}
         for key in self.__objects:
             data_dict[key] = self.__objects[key].to_dict()
-            #serializing the data
+            """serializing the data"""
             with open(self.__file_path, 'w') as f:
                 json.dump(data_dict, f)
 
@@ -45,6 +45,3 @@ class FileStorage:
 
         except FileNotFoundError:
             pass
-
-
-
