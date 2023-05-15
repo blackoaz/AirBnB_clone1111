@@ -1,7 +1,7 @@
 """base model class for AirBnB models"""
 import uuid
 from datetime import datetime
-import models
+from models import storage
 
 
 class BaseModel():
@@ -19,14 +19,16 @@ class BaseModel():
                     self.__dict__[k] = datetime.strptime(v, date_fmt)
                 else:
                     self.__dict__[k] = v
+        else:
+           storage.new(self)
 
     def save(self):
         self.updated_at = datetime.today()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """method for creating a dictionary for the class method"""
-        data_dict  = self.__dict__.copy()
+        data_dict = self.__dict__.copy()
         data_dict['created_at'] = self.created_at.isoformat()
         data_dict['updated_at'] = self.updated_at.isoformat()
         data_dict['__class__'] = self.__class__.__name__
@@ -35,6 +37,5 @@ class BaseModel():
 
     def __str__(self):
         """string representation of the class"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-
-
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
