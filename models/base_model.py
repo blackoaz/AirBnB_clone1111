@@ -26,7 +26,7 @@ class BaseModel():
 
     def to_dict(self):
         """method for creating a dictionary for the class method"""
-        data_dict  = self.__dict__.copy()
+        data_dict = self.__dict__.copy()
         data_dict['created_at'] = self.created_at.isoformat()
         data_dict['updated_at'] = self.updated_at.isoformat()
         data_dict['__class__'] = self.__class__.__name__
@@ -35,6 +35,5 @@ class BaseModel():
 
     def __str__(self):
         """string representation of the class"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-
-
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
