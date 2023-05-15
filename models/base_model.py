@@ -1,7 +1,6 @@
 """base model class for AirBnB models"""
 import uuid
 from datetime import datetime
-from models import storage
 
 
 class BaseModel():
@@ -19,12 +18,9 @@ class BaseModel():
                     self.__dict__[k] = datetime.strptime(v, date_fmt)
                 else:
                     self.__dict__[k] = v
-        else:
-           storage.new(self)
 
     def save(self):
         self.updated_at = datetime.today()
-        storage.save()
 
     def to_dict(self):
         """method for creating a dictionary for the class method"""
