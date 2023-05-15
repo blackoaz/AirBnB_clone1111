@@ -7,7 +7,7 @@ class HelloWorld(cmd.Cmd):
     def do_greet(self, person):
         """Function for grreting"""
         if person:
-            print("Hello," person)
+            print("Hello," + person)
         else:
             print("hi")
 
