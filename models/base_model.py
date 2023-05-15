@@ -9,13 +9,20 @@ class BaseModel():
     def __init__(self, *args, **kwargs):
         """Initialization of the basemodel class"""
 
+        date_fmt = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid.uuid4())
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
+        if len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    self.__dict__[k] = datetime.strptime(v, date_fmt)
+                else:
+                    self.__dict__[k] = v
 
     def save(self):
         self.updated_at = datetime.today()
-        #models.storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """method for creating a dictionary for the class method"""
