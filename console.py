@@ -6,23 +6,17 @@ class HBNBCommand(cmd.Cmd):
     """Creating a terminal in python"""
     prompt = "(hbnb)"
 
-    def do_EOF(self, args):
-        """Function for end of file"""
+    def do_EOF(self, arg):
+        """Command for quitting the program"""
+        print("")
         return True
 
     def emptyline(self):
-        """Function for emptyline"""
+        """Do nothing when empty line is passed"""
         pass
 
-    def help_EOF(self):
-        """Help function for EOF method"""
-        print("Function for exitting the program")
-
-    def help_quit(self):
-        """Help function for quit"""
-        print("Function for quiring the console")
-
-    def do_quit(self, args):
+    def do_quit(self, arg):
+        """Command for quitting the program"""
         return True
 
 
