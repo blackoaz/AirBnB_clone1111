@@ -19,10 +19,12 @@ class BaseModel():
                     self.__dict__[k] = datetime.strptime(v, date_fmt)
                 else:
                     self.__dict__[k] = v
+        #else:
+           # models.storage.new(self)
 
     def save(self):
         self.updated_at = datetime.today()
-        models.storage.save()
+        #models.storage.save()
 
     def to_dict(self):
         """method for creating a dictionary for the class method"""
